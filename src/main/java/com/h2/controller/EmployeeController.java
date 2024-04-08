@@ -66,7 +66,7 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/employees")
+    @GetMapping("/employee")
     @Operation(tags = "Employee", description = "Retrieve all employee details")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK",
             content = @Content(schema = @Schema(implementation = Employee.class))),
