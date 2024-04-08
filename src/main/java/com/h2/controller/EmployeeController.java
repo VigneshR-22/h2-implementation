@@ -66,7 +66,7 @@ public class EmployeeController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/employee")
+    @DeleteMapping("/employee")
     @Operation(tags = "Employee", description = "Remove employee")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK",
             content = @Content(schema = @Schema(implementation = Employee.class))),
