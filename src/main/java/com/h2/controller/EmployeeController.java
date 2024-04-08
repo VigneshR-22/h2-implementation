@@ -58,7 +58,7 @@ public class EmployeeController {
         if (repository.existsById(request.getId())) {
             try {
                 repository.save(request);
-                return new ResponseEntity<>(HttpStatus.CREATED);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
