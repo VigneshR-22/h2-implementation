@@ -35,7 +35,7 @@ public class EmployeeController {
     @Operation(tags = "Employee", description = "Add a new Employee")
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "500", description = "Internal Server Error")})
-    public ResponseEntity<?> addEmployees(
+    public ResponseEntity<?> addEmployee(
             @Parameter
             @RequestBody Employee request
     ) {
