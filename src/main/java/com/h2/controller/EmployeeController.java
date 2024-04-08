@@ -67,7 +67,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    @Operation(tags = "Employee", description = "Retrieve all employee details")
+    @Operation(tags = "Employee", description = "Remove employee")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK",
             content = @Content(schema = @Schema(implementation = Employee.class))),
             @ApiResponse(responseCode = "500", description = "Internal Server Error")})
