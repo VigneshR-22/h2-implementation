@@ -11,10 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,5 +45,24 @@ public class EmployeeController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/employee")
+    @Operation(tags = "Employee", description = "Update an existing Employee")
+    @ApiResponses(value = {@ApiResponse(responseCode = "202", description = "Accepted"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")})
+    public ResponseEntity<?> updateEmployee(
+            @Parameter
+            @RequestBody Employee request
+    ) {
+        if (repository.existsById(request.getId())) {
+            try {
+                repository.save(request);
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
