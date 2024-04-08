@@ -65,4 +65,24 @@ public class EmployeeController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/employees")
+    @Operation(tags = "Employee", description = "Retrieve all employee details")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK",
+            content = @Content(schema = @Schema(implementation = Employee.class))),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")})
+    public ResponseEntity<?> removeEmployee(
+            @Parameter
+            @RequestParam Integer id
+    ) {
+        if (repository.existsById(id)) {
+            try {
+                repository.deleteById(id);
+                return new ResponseEntity<>(HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
