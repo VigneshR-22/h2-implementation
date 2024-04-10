@@ -16,3 +16,6 @@ The swagger displays 4 endpoints:
 
 To check your h2 database, start the application and 
 go to - http://localhost:8080/h2-console
+Use the credentials from the application.properties file to login to the console.
+Select on the table and run the query to view the pre-loaded data.
+You can add/update/remove the data from here if needed.
