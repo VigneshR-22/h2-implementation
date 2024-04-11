@@ -43,4 +43,16 @@ public class EmployeeControllerTest {
 
     }
 
+    @Test
+    public void unitTest_addEmployee() {
+
+        Employee employee = new Employee();
+        employee.setName("Rick");
+        employee.setEmail("rick@emp.com");
+        when(repository.save(any(Employee.class))).thenReturn(employee);
+        ResponseEntity<?> actualResponse = controller.addEmployee(employee);
+        assertEquals(HttpStatus.CREATED, actualResponse.getStatusCode());
+
+    }
+
 }
