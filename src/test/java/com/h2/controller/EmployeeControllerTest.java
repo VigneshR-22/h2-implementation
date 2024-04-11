@@ -69,4 +69,15 @@ public class EmployeeControllerTest {
 
     }
 
+    @Test
+    public void unitTest_removeEmployee() {
+
+        Integer id = 1;
+        when(repository.existsById(id)).thenReturn(true);
+        doNothing().when(repository).deleteById(id);
+        ResponseEntity<?> actualResponse = controller.removeEmployee(id);
+        assertEquals(HttpStatus.OK, actualResponse.getStatusCode());
+
+    }
+
 }
