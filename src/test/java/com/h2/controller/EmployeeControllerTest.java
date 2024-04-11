@@ -55,4 +55,18 @@ public class EmployeeControllerTest {
 
     }
 
+    @Test
+    public void unitTest_updateEmployee() {
+
+        Employee employee = new Employee();
+        employee.setId(1);
+        employee.setName("Ricky");
+        employee.setEmail("ricky@emp.com");
+        when(repository.existsById(employee.getId())).thenReturn(true);
+        when(repository.save(employee)).thenReturn(employee);
+        ResponseEntity<?> actualResponse = controller.updateEmployee(employee);
+        assertEquals(HttpStatus.ACCEPTED, actualResponse.getStatusCode());
+
+    }
+
 }
